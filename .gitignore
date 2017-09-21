@@ -1,3 +1,8 @@
+# Mine
+/node_modules
+*_modules
+*_env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
