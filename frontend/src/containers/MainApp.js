@@ -54,6 +54,9 @@ class MainApp extends Component {
                   title="Search"
                   subtitle="Add weather info about a city!"
                 />
+                { this.props.weather_data.map((city) => {
+                    return <li>{city.name}</li>
+                }) }
                 <CardActions>
                     <TextField
                         value={this.state.search_city}
@@ -70,7 +73,9 @@ class MainApp extends Component {
 }
 
 function mapStateToProps (state) {
-    return {};
+    return {
+        weather_data: state.weather_data
+    };
 }
 
 function mapDispatchToProps (dispatch) {

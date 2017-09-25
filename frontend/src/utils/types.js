@@ -3,4 +3,4 @@
  */
 
 
-export const OPEN_WEATHER_API_KEY = "OPEN_WEATHER_API_KEY"
+export const WEATHER_DATA = "WEATHER_DATA"
