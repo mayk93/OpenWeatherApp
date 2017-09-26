@@ -4,3 +4,4 @@
 
 
 export const WEATHER_DATA = "WEATHER_DATA"
+export const RECOMMENDED_CITY = "RECOMMENDED_CITY"

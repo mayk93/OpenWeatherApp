@@ -27,16 +27,19 @@ class MainApp extends Component {
         super(props)
 
         this.state = {
-            search_city: ''
+            search_city: '',
+            save: false
         }
 
         this._debounced_get_city_data = _.debounce(this.props.get_city_data, 500, {leading: true}).bind(this);
         this.debounced_get_city_data = this.debounced_get_city_data.bind(this)
         this.handle_search_city_input = this.handle_search_city_input.bind(this)
+        this.trigger_on_enter = this.trigger_on_enter.bind(this)
     }
 
     debounced_get_city_data () {
-        this._debounced_get_city_data(this.state.search_city)
+        this._debounced_get_city_data(this.state.search_city, this.state.save)
+        this.setState({save: false})
     }
 
     handle_search_city_input (event) {
@@ -46,27 +49,39 @@ class MainApp extends Component {
         }, this.debounced_get_city_data)
     }
 
+    trigger_on_enter (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.setState({
+                save: true
+            }, this.debounced_get_city_data)
+        }
+    }
+
     render () {
-        // ToDo: Detect enter and trigger search on enter
         return (
             <Card style={main_app_card_style}>
                 <CardHeader
                   title="Search"
                   subtitle="Add weather info about a city!"
                 />
-                { this.props.weather_data.map((city) => {
-                    return <li>{city.name}</li>
-                }) }
+                <CardHeader
+                  title={`Looking for  ${this.props.recommended_city}?`}
+                />
                 <CardActions>
                     <TextField
                         value={this.state.search_city}
                         hintText="Search for a city"
                         onChange={this.handle_search_city_input}
-                        onKeyPress={(event) => {console.log('Key press event: ', event)}}
-
+                        onKeyPress={this.trigger_on_enter}
                         style={main_app_search_style}
                     />
                 </CardActions>
+                {
+                    this.props.weather_data.map((city) => {
+                        return <li key={city.name}>{city.name}</li>
+                    })
+                }
             </Card>
         )
     }
@@ -74,6 +89,7 @@ class MainApp extends Component {
 
 function mapStateToProps (state) {
     return {
+        recommended_city: state.recommended_city,
         weather_data: state.weather_data
     };
 }

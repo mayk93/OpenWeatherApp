@@ -4,9 +4,11 @@
 
 import {combineReducers} from 'redux';
 import ReducerWeatherData from './reducer_weather_data';
+import ReducerRecommendedCity from './reducer_recommended_city'
 
 /* Reducers */
 const rootReducer = combineReducers({
+    recommended_city: ReducerRecommendedCity,
     weather_data: ReducerWeatherData
 });
 

@@ -4,20 +4,21 @@
 
 import axios from 'axios';
 
-import {WEATHER_DATA} from '../utils/types'
+import {WEATHER_DATA, RECOMMENDED_CITY} from '../utils/types'
 import {OPEN_WEATHER_API_KEY} from '../utils/constants'
 
 
-export let get_city_data = (search_city) => {
+export let get_city_data = (search_city, save) => {
+    console.log('get_city_data called with arguments: ', search_city, ' and ', save)
+
     let domain = 'api.openweathermap.org'
     let country = 'us'
     let url = `http://${domain}/data/2.5/forecast?appid=${OPEN_WEATHER_API_KEY}&q=${search_city},${country}`
 
-    // const request = fetch(url)
     const request = axios.get(url);
 
     return {
-        type: WEATHER_DATA,
+        type: save ? WEATHER_DATA : RECOMMENDED_CITY,
         payload: request
     }
 }
