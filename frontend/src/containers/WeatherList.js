@@ -19,6 +19,9 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 
+/* Other */
+import { Sparklines, SparklinesLine } from 'react-sparklines';
+
 class WeatherList extends Component {
     constructor (props) {
         super(props)
@@ -37,6 +40,30 @@ class WeatherList extends Component {
         });
     };
 
+    render_weather = (city, city_index) => {
+        return (
+            <TableRow selected={this.is_selected(city_index)} key={city.name}>
+                <TableRowColumn>{city.name}</TableRowColumn>
+
+                <TableRowColumn>
+                    <Sparklines data={city.temperature}>
+                        <SparklinesLine color="red" />
+                    </Sparklines>
+                </TableRowColumn>
+                <TableRowColumn>
+                    <Sparklines data={city.pressure}>
+                        <SparklinesLine color="gray" />
+                    </Sparklines>
+                </TableRowColumn>
+                <TableRowColumn>
+                    <Sparklines data={city.humidity}>
+                        <SparklinesLine color="blue" />
+                    </Sparklines>
+                </TableRowColumn>
+            </TableRow>
+        );
+    };
+
     render () {
         return (
             <Table onRowSelection={this.handle_row_selection}>
@@ -49,16 +76,8 @@ class WeatherList extends Component {
                     </TableRow>
                 </TableHeader>
 
-                <TableBody>
-                    {
-                        this.props.weather_data.map((city, city_index) => {
-                            return (
-                                <TableRow selected={this.is_selected(city_index)} key={city.name}>
-                                    <TableRowColumn>{city.name}</TableRowColumn>
-                                </TableRow>
-                            );
-                        })
-                    }
+                <TableBody displayRowCheckbox={false}>
+                    { this.props.weather_data.map(this.render_weather) }
                 </TableBody>
             </Table>
         );

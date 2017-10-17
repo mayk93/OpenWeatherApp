@@ -22,7 +22,7 @@ import {main_app_card_style, main_app_search_style} from '../style/js/MainApp'
 /* Actions */
 import {get_city_data} from '../actions'
 
-/* Other */
+/* Mine */
 import WeatherList from './WeatherList'
 
 class MainApp extends Component {

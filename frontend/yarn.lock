@@ -5316,6 +5316,12 @@ react-sparkline@^2.0.0:
   dependencies:
     d3 "^3.5.6"
 
+react-sparklines@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-sparklines/-/react-sparklines-1.7.0.tgz#9b1d97e8c8610095eeb2ad658d2e1fcf91f91a60"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-transition-group@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.0.tgz#b51fc921b0c3835a7ef7c571c79fc82c73e9204f"
