@@ -43,6 +43,9 @@ class WeatherList extends Component {
                 <TableHeader displaySelectAll={false}>
                     <TableRow>
                         <TableHeaderColumn>City Name</TableHeaderColumn>
+                        <TableHeaderColumn>Temperature</TableHeaderColumn>
+                        <TableHeaderColumn>Pressure</TableHeaderColumn>
+                        <TableHeaderColumn>Humidity</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
 
