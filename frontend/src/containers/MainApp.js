@@ -22,6 +22,9 @@ import {main_app_card_style, main_app_search_style} from '../style/js/MainApp'
 /* Actions */
 import {get_city_data} from '../actions'
 
+/* Other */
+import WeatherList from './WeatherList'
+
 class MainApp extends Component {
     constructor (props) {
         super(props)
@@ -29,12 +32,12 @@ class MainApp extends Component {
         this.state = {
             search_city: '',
             save: false
-        }
+        };
 
         this._debounced_get_city_data = _.debounce(this.props.get_city_data, 500, {leading: true}).bind(this);
-        this.debounced_get_city_data = this.debounced_get_city_data.bind(this)
-        this.handle_search_city_input = this.handle_search_city_input.bind(this)
-        this.trigger_on_enter = this.trigger_on_enter.bind(this)
+        this.debounced_get_city_data = this.debounced_get_city_data.bind(this);
+        this.handle_search_city_input = this.handle_search_city_input.bind(this);
+        this.trigger_on_enter = this.trigger_on_enter.bind(this);
     }
 
     debounced_get_city_data () {
@@ -77,11 +80,7 @@ class MainApp extends Component {
                         style={main_app_search_style}
                     />
                 </CardActions>
-                {
-                    this.props.weather_data.map((city) => {
-                        return <li key={city.name}>{city.name}</li>
-                    })
-                }
+                <WeatherList></WeatherList>
             </Card>
         )
     }
@@ -89,8 +88,7 @@ class MainApp extends Component {
 
 function mapStateToProps (state) {
     return {
-        recommended_city: state.recommended_city,
-        weather_data: state.weather_data
+        recommended_city: state.recommended_city
     };
 }
 

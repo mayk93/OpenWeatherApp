@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import logo from './assets/sun_and_cloud.png';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
