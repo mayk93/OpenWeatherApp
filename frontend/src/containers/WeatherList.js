@@ -20,40 +20,86 @@ import {
 } from 'material-ui/Table';
 
 /* Mine */
-import WeatherChart from '../components/WeatherChart'
+import WeatherChart from '../components/WeatherChart';
+
+/* Lodash */
+import _ from 'lodash';
+
+let convert = (data, conversion) => {
+    return _.map(data, conversion)
+}
 
 class WeatherList extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            selected: [],
+            selected: []
         };
+
+        this.units = {
+            temperature: [
+                {name: 'Kelvin', symbol: 'K', value: 'default'},
+                {name: 'Celsius', symbol: '°C', value: 'celsius'},
+                {name: 'Fahrenheit', symbol: '°F', value: 'fahrenheit'}
+            ],
+        }
+
+        this.conversions = {
+            default: (entry) => {return entry},
+            celsius: (entry) => {return entry - 273},
+            fahrenheit: (entry) => {return _.round(entry * 9/5 - 459.67)}
+        }
     }
 
-    is_selected = (index) => {
-        return this.state.selected.indexOf(index) !== -1;
-    };
+    temperature_conversion = (temperature) => {
+        return convert(temperature, this.conversions[this.props.temperature_unit])
+    }
 
-    handle_row_selection = (selectedRows) => {
-        this.setState({
-            selected: selectedRows,
+    pressure_conversion = (temperature) => {
+        return convert(temperature, this.conversions[this.props.pressure_unit])
+    }
+
+    humidity_conversion = (temperature) => {
+        return convert(temperature, this.conversions[this.props.humidity_unit])
+    }
+
+    get_symbol = (symbol_type) => {
+        let symbol
+        this.units[symbol_type].map((entry) => {
+            if (entry.value === this.state[`${symbol_type}_unit`]) {
+                symbol = entry.symbol
+            }
         });
-    };
+        return symbol
+    }
 
-    render_weather = (city, city_index) => {
+    render_weather = (city) => {
         return (
-            <TableRow selected={this.is_selected(city_index)} key={city.name}>
+            <TableRow key={city.name}>
                 <TableRowColumn>{city.name}</TableRowColumn>
-                <WeatherChart data={city.temperature} color="red"></WeatherChart>
-                <WeatherChart data={city.pressure} color="gray"></WeatherChart>
-                <WeatherChart data={city.humidity} color="blue"></WeatherChart>
+                <WeatherChart data={this.temperature_conversion(city.temperature)}
+                              symbol={this.get_symbol('temperature')}
+                              name="Temperature"
+                              color="red"
+                >
+                </WeatherChart>
+                <WeatherChart data={this.pressure_conversion(city.pressure)}
+                              name="Pressure"
+                              color="gray"
+                >
+                </WeatherChart>
+                <WeatherChart data={this.humidity_conversion(city.humidity)}
+                              name="Humidity"
+                              color="blue"
+                >
+                </WeatherChart>
             </TableRow>
         );
     };
 
     render () {
         return (
-            <Table onRowSelection={this.handle_row_selection}>
+            <Table>
                 <TableHeader displaySelectAll={false}>
                     <TableRow>
                         <TableHeaderColumn>City Name</TableHeaderColumn>

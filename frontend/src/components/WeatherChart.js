@@ -3,39 +3,43 @@
  */
 
 /* React */
-import React from 'react';
+import React, {Component} from 'react';
 
 /* Material UI */
-import {
-    TableRowColumn,
-} from 'material-ui/Table';
-import Chip from 'material-ui/Chip';
-import {red100, grey100, blue100} from 'material-ui/styles/colors';
+import {TableRowColumn} from 'material-ui/Table';
+import {Card, CardHeader} from 'material-ui/Card';
 
 /* Other */
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 
-/* Inline styles */
-import {weather_chart_chip_style} from '../style/js/WeatherChart';
-
 /* Lodash */
-import _ from 'lodash'
-
-let to_material_color = {red100, grey100, blue100};
+import _ from 'lodash';
 
 let average = (data) => {
     return _.round(_.sum(data)/data.length);
 };
 
-export default (props) => {
-    return (
-        <TableRowColumn>
-            <Sparklines data={props.data}>
-                <SparklinesLine color={props.color} />
-            </Sparklines>
-            <Chip style={weather_chart_chip_style} backgroundColor={to_material_color[`${props.color}100`]}>
-              Average: {average(props.data)}
-            </Chip>
-        </TableRowColumn>
-    );
+class WeatherChart extends Component {
+    constructor () {
+        super()
+        this.state = {}
+    }
+
+    render () {
+        return (
+            <TableRowColumn>
+                <Sparklines data={this.props.data}>
+                    <SparklinesLine color={this.props.color} />
+                </Sparklines>
+                <Card>
+                    <CardHeader
+                      title={this.props.name || `${average(this.props.data)} ${this.props.symbol || ''}`}
+                      subtitle={this.props.name ? `${average(this.props.data)} ${this.props.symbol || ''}` : ''}
+                    />
+                </Card>
+            </TableRowColumn>
+        );
+    }
 }
+
+export default WeatherChart
