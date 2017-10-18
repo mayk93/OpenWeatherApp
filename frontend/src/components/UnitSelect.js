@@ -17,7 +17,7 @@ export default (props) => {
         <SelectField
                   floatingLabelText="Temperature"
                   value={props.temperature_unit}
-                  onChange={props.handle_change}
+                  onChange={(event, index, value) => {props.handle_change(event, index, value, props.unit_type)}}
                   style={unit_select_style}
         >
             {

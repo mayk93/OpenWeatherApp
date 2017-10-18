@@ -46,17 +46,21 @@ class WeatherList extends Component {
                 {name: 'Celsius', symbol: '°C', value: 'celsius'},
                 {name: 'Fahrenheit', symbol: '°F', value: 'fahrenheit'}
             ],
+            pressure: [
+                {name: 'Hectopascal', symbol: 'hPA', value: 'default'},
+                {name: 'Pascal', symbol: 'PA', value: 'pascal'}
+            ]
         }
 
         this.conversions = {
             default: (entry) => {return entry},
             celsius: (entry) => {return entry - 273},
-            fahrenheit: (entry) => {return _.round(entry * 9/5 - 459.67)}
+            fahrenheit: (entry) => {return _.round(entry * 9/5 - 459.67)},
+            pascal: (entry) => {return _.round(entry * 100)}
         }
     }
 
     temperature_conversion = (temperature) => {
-        console.log('this.props.temperature_unit in temperature_conversion: ', this.props.temperature_unit)
         return convert(temperature, this.conversions[this.state.temperature_unit])
     }
 
@@ -94,6 +98,7 @@ class WeatherList extends Component {
                 >
                 </WeatherChart>
                 <WeatherChart data={this.humidity_conversion(city.humidity)}
+                              symbol="%"
                               name="Humidity"
                               color="blue"
                 >
@@ -102,10 +107,10 @@ class WeatherList extends Component {
         );
     };
 
-    handle_unit_selection = (event, index, value) => {
-        this.setState({
-            temperature_unit: value
-        })
+    handle_unit_selection = (event, index, value, unit_type) => {
+        let new_state = {}
+        new_state[`${unit_type}_unit`] = value
+        this.setState(new_state)
     }
 
     render () {
@@ -118,10 +123,15 @@ class WeatherList extends Component {
                             <UnitSelect handle_change={this.handle_unit_selection}
                                         temperature_unit={this.state.temperature_unit}
                                         units={this.units.temperature}
+                                        unit_type="temperature"
                             />
                         </TableHeaderColumn>
                         <TableHeaderColumn>
-                            Pressure
+                            <UnitSelect handle_change={this.handle_unit_selection}
+                                        temperature_unit={this.state.pressure_unit}
+                                        units={this.units.pressure}
+                                        unit_type="pressure"
+                            />
                         </TableHeaderColumn>
                         <TableHeaderColumn>
                             Humidity
