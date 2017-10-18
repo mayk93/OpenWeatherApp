@@ -9,12 +9,12 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-/* Lodash */
-import _ from 'lodash'
-
 /* Material UI */
 import {Card, CardActions, CardHeader} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
+
+/* Mine */
+import WeatherList from './WeatherList'
 
 /* Inline styles */
 import {main_app_card_style, main_app_search_style} from '../style/js/MainApp'
@@ -22,8 +22,8 @@ import {main_app_card_style, main_app_search_style} from '../style/js/MainApp'
 /* Actions */
 import {get_city_data} from '../actions'
 
-/* Mine */
-import WeatherList from './WeatherList'
+/* Lodash */
+import _ from 'lodash'
 
 class MainApp extends Component {
     constructor (props) {

@@ -19,8 +19,8 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 
-/* Other */
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+/* Mine */
+import WeatherChart from '../components/WeatherChart'
 
 class WeatherList extends Component {
     constructor (props) {
@@ -44,22 +44,9 @@ class WeatherList extends Component {
         return (
             <TableRow selected={this.is_selected(city_index)} key={city.name}>
                 <TableRowColumn>{city.name}</TableRowColumn>
-
-                <TableRowColumn>
-                    <Sparklines data={city.temperature}>
-                        <SparklinesLine color="red" />
-                    </Sparklines>
-                </TableRowColumn>
-                <TableRowColumn>
-                    <Sparklines data={city.pressure}>
-                        <SparklinesLine color="gray" />
-                    </Sparklines>
-                </TableRowColumn>
-                <TableRowColumn>
-                    <Sparklines data={city.humidity}>
-                        <SparklinesLine color="blue" />
-                    </Sparklines>
-                </TableRowColumn>
+                <WeatherChart data={city.temperature} color="red"></WeatherChart>
+                <WeatherChart data={city.pressure} color="gray"></WeatherChart>
+                <WeatherChart data={city.humidity} color="blue"></WeatherChart>
             </TableRow>
         );
     };
