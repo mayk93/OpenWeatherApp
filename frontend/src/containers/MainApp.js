@@ -12,8 +12,6 @@ import { bindActionCreators } from 'redux';
 /* Material UI */
 import {Card, CardActions, CardHeader} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-// import SelectField from 'material-ui/SelectField';
-// import MenuItem from 'material-ui/MenuItem';
 
 /* Mine */
 import WeatherList from './WeatherList'
@@ -86,10 +84,7 @@ class MainApp extends Component {
                         style={main_app_search_style}
                     />
                 </CardActions>
-                <WeatherList temperature_unit={temperature_unit}
-                             pressure_unit={pressure_unit}
-                             humidity_unit={humidity_unit}
-                >
+                <WeatherList>
                 </WeatherList>
             </Card>
         )

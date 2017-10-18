@@ -21,6 +21,7 @@ import {
 
 /* Mine */
 import WeatherChart from '../components/WeatherChart';
+import UnitSelect from '../components/UnitSelect';
 
 /* Lodash */
 import _ from 'lodash';
@@ -33,7 +34,10 @@ class WeatherList extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            selected: []
+            selected: [],
+            temperature_unit: 'default',
+            pressure_unit: 'default',
+            humidity_unit: 'default'
         };
 
         this.units = {
@@ -52,25 +56,26 @@ class WeatherList extends Component {
     }
 
     temperature_conversion = (temperature) => {
-        return convert(temperature, this.conversions[this.props.temperature_unit])
+        console.log('this.props.temperature_unit in temperature_conversion: ', this.props.temperature_unit)
+        return convert(temperature, this.conversions[this.state.temperature_unit])
     }
 
     pressure_conversion = (temperature) => {
-        return convert(temperature, this.conversions[this.props.pressure_unit])
+        return convert(temperature, this.conversions[this.state.pressure_unit])
     }
 
     humidity_conversion = (temperature) => {
-        return convert(temperature, this.conversions[this.props.humidity_unit])
+        return convert(temperature, this.conversions[this.state.humidity_unit])
     }
 
-    get_symbol = (symbol_type) => {
-        let symbol
-        this.units[symbol_type].map((entry) => {
-            if (entry.value === this.state[`${symbol_type}_unit`]) {
-                symbol = entry.symbol
+    get_current_unit = (unit_type) => {
+        let unit
+        this.units[unit_type].map((entry) => {
+            if (entry.value === this.state[`${unit_type}_unit`]) {
+                unit = entry
             }
         });
-        return symbol
+        return unit
     }
 
     render_weather = (city) => {
@@ -78,7 +83,7 @@ class WeatherList extends Component {
             <TableRow key={city.name}>
                 <TableRowColumn>{city.name}</TableRowColumn>
                 <WeatherChart data={this.temperature_conversion(city.temperature)}
-                              symbol={this.get_symbol('temperature')}
+                              symbol={this.get_current_unit('temperature').symbol}
                               name="Temperature"
                               color="red"
                 >
@@ -97,15 +102,30 @@ class WeatherList extends Component {
         );
     };
 
+    handle_unit_selection = (event, index, value) => {
+        this.setState({
+            temperature_unit: value
+        })
+    }
+
     render () {
         return (
             <Table>
                 <TableHeader displaySelectAll={false}>
                     <TableRow>
                         <TableHeaderColumn>City Name</TableHeaderColumn>
-                        <TableHeaderColumn>Temperature</TableHeaderColumn>
-                        <TableHeaderColumn>Pressure</TableHeaderColumn>
-                        <TableHeaderColumn>Humidity</TableHeaderColumn>
+                        <TableHeaderColumn>
+                            <UnitSelect handle_change={this.handle_unit_selection}
+                                        temperature_unit={this.state.temperature_unit}
+                                        units={this.units.temperature}
+                            />
+                        </TableHeaderColumn>
+                        <TableHeaderColumn>
+                            Pressure
+                        </TableHeaderColumn>
+                        <TableHeaderColumn>
+                            Humidity
+                        </TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
 
