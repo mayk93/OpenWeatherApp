@@ -10,8 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 /* Material UI */
-import {Card, CardActions, CardHeader} from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
+import {Card, CardHeader} from 'material-ui/Card';
 
 /* Mine */
 import WeatherList from './WeatherList'

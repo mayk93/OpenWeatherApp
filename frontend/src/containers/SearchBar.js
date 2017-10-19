@@ -17,7 +17,7 @@ import TextField from 'material-ui/TextField';
 import {main_app_search_style} from '../style/js/MainApp'
 
 /* Actions */
-import {get_city_data} from '../actions'
+import {get_city_data, autocomplete_request} from '../actions'
 
 /* Lodash */
 import _ from 'lodash'
@@ -43,6 +43,9 @@ class MainApp extends Component {
     }
 
     handle_search_city_input (event) {
+        console.log('Making API call to Google Places')
+        this.props.autocomplete_request(event.target.value)
+
         let new_value = event.target.value
         this.setState({
             search_city: new_value
@@ -80,7 +83,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-    return bindActionCreators({get_city_data}, dispatch);
+    return bindActionCreators({get_city_data, autocomplete_request}, dispatch);
 }
 
 
