@@ -3980,6 +3980,10 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash.defaults@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
@@ -4099,6 +4103,10 @@ map-obj@^1.0.0, map-obj@^1.0.1:
 marker-clusterer-plus@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/marker-clusterer-plus/-/marker-clusterer-plus-2.1.4.tgz#f8eff74d599dab3b7d0e3fed5264ea0e704f5d67"
+
+markerwithlabel@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/markerwithlabel/-/markerwithlabel-2.0.1.tgz#822f4eb68c488c2509c5ebdb75982eb84a856096"
 
 material-ui@^0.19.2:
   version "0.19.2"
@@ -5242,9 +5250,9 @@ react-event-listener@^0.4.5:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-google-maps@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/react-google-maps/-/react-google-maps-8.2.0.tgz#4e597052341d62d489a1ce048590ac147357e071"
+react-google-maps@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/react-google-maps/-/react-google-maps-9.0.1.tgz#01790c98b0922e8066eb4c89f5fdc217e7be6601"
   dependencies:
     babel-runtime "^6.11.6"
     can-use-dom "^0.1.0"
@@ -5252,10 +5260,18 @@ react-google-maps@^8.2.0:
     invariant "^2.2.1"
     lodash "^4.16.2"
     marker-clusterer-plus "^2.1.4"
+    markerwithlabel "^2.0.1"
     prop-types "^15.5.8"
     recompose "^0.25.0"
     scriptjs "^2.5.8"
     warning "^3.0.0"
+
+react-places-autocomplete@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-5.4.3.tgz#321166247a9279b93ff21ee59112836058dda0ba"
+  dependencies:
+    lodash.debounce "^4.0.8"
+    prop-types "^15.5.8"
 
 react-redux@^5.0.6:
   version "5.0.6"

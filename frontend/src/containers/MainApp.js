@@ -11,13 +11,13 @@ import { bindActionCreators } from 'redux';
 
 /* Material UI */
 import {Card, CardActions, CardHeader} from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
 
 /* Mine */
 import WeatherList from './WeatherList'
+import SearchBar from './SearchBar'
 
 /* Inline styles */
-import {main_app_card_style, main_app_search_style} from '../style/js/MainApp'
+import {main_app_card_style} from '../style/js/MainApp'
 
 /* Actions */
 import {get_city_data} from '../actions'
@@ -40,7 +40,7 @@ class MainApp extends Component {
 
         this._debounced_get_city_data = _.debounce(this.props.get_city_data, 500, {leading: true}).bind(this);
         this.debounced_get_city_data = this.debounced_get_city_data.bind(this);
-        this.handle_search_city_input = this.handle_search_city_input.bind(this);
+        // this.handle_search_city_input = this.handle_search_city_input.bind(this);
         this.trigger_on_enter = this.trigger_on_enter.bind(this);
     }
 
@@ -49,12 +49,12 @@ class MainApp extends Component {
         this.setState({save: false})
     }
 
-    handle_search_city_input (event) {
-        let new_value = event.target.value
-        this.setState({
-            search_city: new_value
-        }, this.debounced_get_city_data)
-    }
+    // handle_search_city_input (event) {
+    //     let new_value = event.target.value
+    //     this.setState({
+    //         search_city: new_value
+    //     }, this.debounced_get_city_data)
+    // }
 
     trigger_on_enter (event) {
         if (event.key === 'Enter') {
@@ -73,16 +73,10 @@ class MainApp extends Component {
                   subtitle="Add weather info about a city!"
                 />
                 <CardHeader
-                  title={`Looking for  ${this.props.recommended_city}?`}
+                  title={`Looking for ${this.props.recommended_city}?`}
                 />
                 <CardActions>
-                    <TextField
-                        value={this.state.search_city}
-                        hintText="Search for a city"
-                        onChange={this.handle_search_city_input}
-                        onKeyPress={this.trigger_on_enter}
-                        style={main_app_search_style}
-                    />
+                    <SearchBar />
                 </CardActions>
                 <WeatherList>
                 </WeatherList>

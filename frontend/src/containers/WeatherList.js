@@ -78,6 +78,7 @@ class WeatherList extends Component {
             if (entry.value === this.state[`${unit_type}_unit`]) {
                 unit = entry
             }
+            return null
         });
         return unit
     }

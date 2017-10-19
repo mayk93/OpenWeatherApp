@@ -8,7 +8,7 @@ import {RECOMMENDED_CITY} from '../utils/types';
 export default function (state = 'a city', action) {
     switch (action.type) {
         case RECOMMENDED_CITY:
-            return action.payload.data.city.name;
+            return action.payload;
         default:
             return state;
     }

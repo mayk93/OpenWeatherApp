@@ -20,3 +20,10 @@ export let get_city_data = (search_city, save) => {
         payload: request
     }
 }
+
+export let set_recommended_city = (new_city) => {
+    return {
+        type: RECOMMENDED_CITY,
+        payload: new_city
+    }
+}
