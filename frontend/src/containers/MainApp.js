@@ -19,6 +19,14 @@ import SearchBar from './SearchBar'
 /* Inline styles */
 import {main_app_card_style} from '../style/js/MainApp'
 
+let first_recommended_city = (predictions) => {
+    if (predictions.length === 0) {
+        return 'a city'
+    } else {
+        return predictions[0].description
+    }
+}
+
 class MainApp extends Component {
     constructor (props) {
         super(props)
@@ -34,7 +42,7 @@ class MainApp extends Component {
                   subtitle="Add weather info about a city!"
                 />
                 <CardHeader
-                  title={`Looking for  ${this.props.recommended_city}?`}
+                  title={`Looking for ${first_recommended_city(this.props.autocomplete)}?`}
                 />
                 <SearchBar />
                 <WeatherList>
@@ -46,7 +54,7 @@ class MainApp extends Component {
 
 function mapStateToProps (state) {
     return {
-        recommended_city: state.recommended_city
+        autocomplete: state.autocomplete
     };
 }
 

@@ -4,11 +4,11 @@
 
 import axios from 'axios';
 
-import {WEATHER_DATA, RECOMMENDED_CITY, AUTOCOMPLETE} from '../utils/types'
-import {OPEN_WEATHER_API_KEY, GOOGLE_PLACES_KEY} from '../utils/constants'
+import {WEATHER_DATA, AUTOCOMPLETE} from '../utils/types'
+import {AUTOCOMPLETE_SERVER, OPEN_WEATHER_API_KEY} from '../utils/constants'
 
 
-export let get_city_data = (search_city, save) => {
+export let get_city_data = (search_city) => {
     let domain = 'api.openweathermap.org'
     let country = 'us'
     let url = `http://${domain}/data/2.5/forecast?appid=${OPEN_WEATHER_API_KEY}&q=${search_city},${country}`
@@ -16,18 +16,15 @@ export let get_city_data = (search_city, save) => {
     const request = axios.get(url);
 
     return {
-        type: save ? WEATHER_DATA : RECOMMENDED_CITY,
+        type: WEATHER_DATA,
         payload: request
     }
 }
 
-export let autocomplete_request = (city) => {
-    let domain = 'maps.googleapis.com'
-    let path = 'maps/api/place/autocomplete/json'
-    let query = `input=${city}&types=(cities)`
-    let url = `https://${domain}/${path}?${query}&key=${GOOGLE_PLACES_KEY}`
+export let autocomplete_request = (current_input) => {
+    let url = `${AUTOCOMPLETE_SERVER}/autocomplete`
 
-    const request = axios.get(url);
+    const request = axios.post(url, {current_input});
 
     return {
         type: AUTOCOMPLETE,

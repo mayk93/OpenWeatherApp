@@ -8,8 +8,7 @@ import {AUTOCOMPLETE} from '../utils/types';
 export default function (state = [], action) {
     switch (action.type) {
         case AUTOCOMPLETE:
-            console.log('This is the action payload for AUTOCOMPLETE: ', action.payload)
-            return [];
+            return action.payload.data;
         default:
             return state;
     }

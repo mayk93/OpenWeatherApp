@@ -27,8 +27,7 @@ class MainApp extends Component {
         super(props)
 
         this.state = {
-            search_city: '',
-            save: false
+            search_city: ''
         };
 
         this._debounced_get_city_data = _.debounce(this.props.get_city_data, 500, {leading: true}).bind(this);
@@ -38,26 +37,22 @@ class MainApp extends Component {
     }
 
     debounced_get_city_data () {
-        this._debounced_get_city_data(this.state.search_city, this.state.save)
-        this.setState({save: false})
+        this._debounced_get_city_data(this.state.search_city)
     }
 
     handle_search_city_input (event) {
-        console.log('Making API call to Google Places')
         this.props.autocomplete_request(event.target.value)
 
         let new_value = event.target.value
         this.setState({
             search_city: new_value
-        }, this.debounced_get_city_data)
+        })
     }
 
     trigger_on_enter (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            this.setState({
-                save: true
-            }, this.debounced_get_city_data)
+            this.debounced_get_city_data()
         }
     }
 
@@ -78,7 +73,7 @@ class MainApp extends Component {
 
 function mapStateToProps (state) {
     return {
-        recommended_city: state.recommended_city
+        autocomplete: state.autocomplete
     };
 }
 
