@@ -2,7 +2,6 @@
  * Created by michael on 25/09/2017.
  */
 
-export const OPEN_WEATHER_API_KEY = "39c0045ecf5427f863ee825ebba7fd3b"
-export const AUTOCOMPLETE_SERVER = (
+export const BACKEND_SERVER = (
     process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000'
 )

@@ -10,7 +10,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 /* Inline styles */
-import {unit_select_style} from '../style/js/UnitSelect'
+import {unit_select_style, unit_select_menu_item_style} from '../style/js/UnitSelect'
 
 export default (props) => {
     return (
@@ -22,9 +22,13 @@ export default (props) => {
         >
             {
                 props.units.map((unit) => {
-                    return <MenuItem key={unit.value}
-                                     value={unit.value}
-                                     primaryText={unit.name} />
+                    return (
+                        <MenuItem key={unit.value}
+                                  value={unit.value}
+                                  primaryText={unit.name}
+                                  style={unit_select_menu_item_style}
+                        />
+                    );
                 })
             }
         </SelectField>

@@ -3,3 +3,4 @@
  */
 
 export let unit_select_style = {width: '200px!important'}
+export let unit_select_menu_item_style = {width: '50px!important'}

@@ -23,6 +23,9 @@ import {
 import WeatherChart from '../components/WeatherChart';
 import UnitSelect from '../components/UnitSelect';
 
+/* Inline styles */
+import {city_name_column_style} from '../style/js/WeatherList'
+
 /* Lodash */
 import _ from 'lodash';
 
@@ -86,7 +89,7 @@ class WeatherList extends Component {
     render_weather = (city) => {
         return (
             <TableRow key={city.name}>
-                <TableRowColumn>{city.name}</TableRowColumn>
+                <TableRowColumn style={city_name_column_style}>{city.name}</TableRowColumn>
                 <WeatherChart data={this.temperature_conversion(city.temperature)}
                               symbol={this.get_current_unit('temperature').symbol}
                               name="Temperature"

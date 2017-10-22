@@ -5,15 +5,13 @@
 import axios from 'axios';
 
 import {WEATHER_DATA, AUTOCOMPLETE} from '../utils/types'
-import {AUTOCOMPLETE_SERVER, OPEN_WEATHER_API_KEY} from '../utils/constants'
+import {BACKEND_SERVER} from '../utils/constants'
 
 
-export let get_city_data = (search_city) => {
-    let domain = 'api.openweathermap.org'
-    let country = 'us'
-    let url = `http://${domain}/data/2.5/forecast?appid=${OPEN_WEATHER_API_KEY}&q=${search_city},${country}`
+export let weather_data_request = (search_city, search_country) => {
+    let url = `${BACKEND_SERVER}/weather_data`
 
-    const request = axios.get(url);
+    const request = axios.post(url, {search_city, search_country});
 
     return {
         type: WEATHER_DATA,
@@ -22,7 +20,7 @@ export let get_city_data = (search_city) => {
 }
 
 export let autocomplete_request = (current_input) => {
-    let url = `${AUTOCOMPLETE_SERVER}/autocomplete`
+    let url = `${BACKEND_SERVER}/autocomplete`
 
     const request = axios.post(url, {current_input});
 

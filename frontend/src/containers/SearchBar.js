@@ -17,10 +17,7 @@ import TextField from 'material-ui/TextField';
 import {main_app_search_style} from '../style/js/MainApp'
 
 /* Actions */
-import {get_city_data, autocomplete_request} from '../actions'
-
-/* Lodash */
-import _ from 'lodash'
+import {weather_data_request, autocomplete_request} from '../actions'
 
 class MainApp extends Component {
     constructor (props) {
@@ -30,14 +27,8 @@ class MainApp extends Component {
             search_city: ''
         };
 
-        this._debounced_get_city_data = _.debounce(this.props.get_city_data, 500, {leading: true}).bind(this);
-        this.debounced_get_city_data = this.debounced_get_city_data.bind(this);
         this.handle_search_city_input = this.handle_search_city_input.bind(this);
-        this.trigger_on_enter = this.trigger_on_enter.bind(this);
-    }
-
-    debounced_get_city_data () {
-        this._debounced_get_city_data(this.state.search_city)
+        this.weather_data_request = this.weather_data_request.bind(this);
     }
 
     handle_search_city_input (event) {
@@ -49,10 +40,10 @@ class MainApp extends Component {
         })
     }
 
-    trigger_on_enter (event) {
+    weather_data_request (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            this.debounced_get_city_data()
+            this.props.weather_data_request(this.state.search_city, 'us')
         }
     }
 
@@ -63,7 +54,7 @@ class MainApp extends Component {
                     value={this.state.search_city}
                     hintText="Search for a city"
                     onChange={this.handle_search_city_input}
-                    onKeyPress={this.trigger_on_enter}
+                    onKeyPress={this.weather_data_request}
                     style={main_app_search_style}
                 />
             </CardActions>
@@ -78,7 +69,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-    return bindActionCreators({get_city_data, autocomplete_request}, dispatch);
+    return bindActionCreators({weather_data_request, autocomplete_request}, dispatch);
 }
 
 
