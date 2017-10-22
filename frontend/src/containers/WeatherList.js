@@ -88,7 +88,7 @@ class WeatherList extends Component {
 
     render_weather = (city) => {
         return (
-            <TableRow key={city.name}>
+            <TableRow key={city.hash}>
                 <TableRowColumn style={city_name_column_style}>{city.name}</TableRowColumn>
                 <WeatherChart data={this.temperature_conversion(city.temperature)}
                               symbol={this.get_current_unit('temperature').symbol}

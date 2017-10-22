@@ -12,6 +12,8 @@ import { bindActionCreators } from 'redux';
 /* Material UI */
 import {CardActions} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 /* Inline styles */
 import {main_app_search_style} from '../style/js/MainApp'
@@ -40,6 +42,18 @@ class MainApp extends Component {
         })
     }
 
+    handle_location_selection (event) {
+        console.log('handle_location_selection event: ', event)
+    }
+
+    display_autocomplete_locations (autocomplete_location) {
+        return (
+            <MenuItem value={autocomplete_location} primaryText={autocomplete_location.description}
+                      key={autocomplete_location.hash}
+            />
+        )
+    }
+
     weather_data_request (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -57,6 +71,15 @@ class MainApp extends Component {
                     onKeyPress={this.weather_data_request}
                     style={main_app_search_style}
                 />
+                {
+                    this.props.autocomplete.length > 0 ?
+                        <DropDownMenu value={this.props.autocomplete[0]} onChange={this.handle_location_selection}
+                                      openImmediately={true}>
+                            {this.props.autocomplete.map(this.display_autocomplete_locations)}
+                        </DropDownMenu>
+                        :
+                        <div></div>
+                }
             </CardActions>
         )
     }
