@@ -12,16 +12,17 @@ import { bindActionCreators } from 'redux';
 /* Material UI */
 import {CardActions} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+
+/* Mine */
+import AutocompleteList from '../containers/AutocompleteList';
 
 /* Inline styles */
-import {main_app_search_style} from '../style/js/MainApp'
+import {search_bar_search_style} from '../style/js/SearchBar'
 
 /* Actions */
-import {weather_data_request, autocomplete_request} from '../actions'
+import {weather_data_request, autocomplete_request, set_current_location} from '../actions'
 
-class MainApp extends Component {
+class SearchBar extends Component {
     constructor (props) {
         super(props)
 
@@ -33,8 +34,19 @@ class MainApp extends Component {
         this.weather_data_request = this.weather_data_request.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.current_location && nextProps.current_location.text && nextProps.current_location.city) {
+            if (this.state.search_city !== nextProps.current_location.text) {
+                this.setState({search_city: nextProps.current_location.text})
+            }
+        }
+    }
+
     handle_search_city_input (event) {
         this.props.autocomplete_request(event.target.value)
+        if (this.props.current_location.city !== null) {
+            this.props.set_current_location({text: event.target.value, city: null, country: null})
+        }
 
         let new_value = event.target.value
         this.setState({
@@ -42,22 +54,10 @@ class MainApp extends Component {
         })
     }
 
-    handle_location_selection (event) {
-        console.log('handle_location_selection event: ', event)
-    }
-
-    display_autocomplete_locations (autocomplete_location) {
-        return (
-            <MenuItem value={autocomplete_location} primaryText={autocomplete_location.description}
-                      key={autocomplete_location.hash}
-            />
-        )
-    }
-
     weather_data_request (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            this.props.weather_data_request(this.state.search_city, 'us')
+            this.props.weather_data_request(this.props.current_location.city, this.props.current_location.country)
         }
     }
 
@@ -69,17 +69,9 @@ class MainApp extends Component {
                     hintText="Search for a city"
                     onChange={this.handle_search_city_input}
                     onKeyPress={this.weather_data_request}
-                    style={main_app_search_style}
+                    style={search_bar_search_style}
                 />
-                {
-                    this.props.autocomplete.length > 0 ?
-                        <DropDownMenu value={this.props.autocomplete[0]} onChange={this.handle_location_selection}
-                                      openImmediately={true}>
-                            {this.props.autocomplete.map(this.display_autocomplete_locations)}
-                        </DropDownMenu>
-                        :
-                        <div></div>
-                }
+                <AutocompleteList />
             </CardActions>
         )
     }
@@ -87,13 +79,14 @@ class MainApp extends Component {
 
 function mapStateToProps (state) {
     return {
-        autocomplete: state.autocomplete
+        autocomplete: state.autocomplete,
+        current_location: state.current_location
     };
 }
 
 function mapDispatchToProps (dispatch) {
-    return bindActionCreators({weather_data_request, autocomplete_request}, dispatch);
+    return bindActionCreators({weather_data_request, autocomplete_request, set_current_location}, dispatch);
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainApp);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

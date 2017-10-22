@@ -19,13 +19,8 @@ import SearchBar from './SearchBar'
 /* Inline styles */
 import {main_app_card_style} from '../style/js/MainApp'
 
-let first_recommended_city = (predictions) => {
-    if (predictions.length === 0) {
-        return 'a city'
-    } else {
-        return predictions[0].description
-    }
-}
+/* Functions */
+import {first_recommended_city} from '../utils/functions'
 
 class MainApp extends Component {
     constructor (props) {

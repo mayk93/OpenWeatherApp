@@ -8,7 +8,3 @@ export let main_app_card_style = {
     "marginTop": "1%",
     "marginLeft": "10%"
 };
-
-export let main_app_search_style = {
-    "width": "90%"
-};

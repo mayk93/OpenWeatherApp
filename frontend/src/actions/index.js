@@ -4,18 +4,25 @@
 
 import axios from 'axios';
 
-import {WEATHER_DATA, AUTOCOMPLETE} from '../utils/types'
+import {WEATHER_DATA, AUTOCOMPLETE, CURRENT_LOCATION} from '../utils/types'
 import {BACKEND_SERVER} from '../utils/constants'
 
 
+/* Requests */
 export let weather_data_request = (search_city, search_country) => {
-    let url = `${BACKEND_SERVER}/weather_data`
+    if (search_city && search_country) {
+        let url = `${BACKEND_SERVER}/weather_data`
 
-    const request = axios.post(url, {search_city, search_country});
+        const request = axios.post(url, {search_city, search_country});
 
+        return {
+            type: WEATHER_DATA,
+            payload: request
+        }
+    }
     return {
         type: WEATHER_DATA,
-        payload: request
+        payload: {data: []}
     }
 }
 
@@ -27,5 +34,21 @@ export let autocomplete_request = (current_input) => {
     return {
         type: AUTOCOMPLETE,
         payload: request
+    }
+}
+
+
+/* Setters */
+export let set_current_location = (location) => {
+    return {
+        type: CURRENT_LOCATION,
+        payload: location
+    }
+}
+
+export let set_autocomplete_locations = (locations) => {
+    return {
+        type: AUTOCOMPLETE,
+        payload: {data: locations}
     }
 }
