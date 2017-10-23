@@ -12,12 +12,16 @@ import { bindActionCreators } from 'redux';
 /* Material UI */
 import {CardActions} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
+import SearchIcon from 'material-ui/svg-icons/action/search';
 
 /* Mine */
 import AutocompleteList from '../containers/AutocompleteList';
 
 /* Inline styles */
-import {search_bar_search_style} from '../style/js/SearchBar'
+import {
+    search_bar_search_style, search_bar_search_icon_style,
+    search_bar_search_container_style, search_bar_search_div_style
+} from '../style/js/SearchBar'
 
 /* Actions */
 import {weather_data_request, autocomplete_request, set_current_location} from '../actions'
@@ -64,13 +68,18 @@ class SearchBar extends Component {
     render () {
         return (
             <CardActions>
-                <TextField
-                    value={this.state.search_city}
-                    hintText="Search for a city"
-                    onChange={this.handle_search_city_input}
-                    onKeyPress={this.weather_data_request}
-                    style={search_bar_search_style}
-                />
+                <div style={search_bar_search_container_style}>
+                    <div style={search_bar_search_div_style}>
+                        <SearchIcon style={search_bar_search_icon_style}/>
+                    </div>
+                    <TextField
+                        value={this.state.search_city}
+                        hintText="Search for a city"
+                        onChange={this.handle_search_city_input}
+                        onKeyPress={this.weather_data_request}
+                        style={search_bar_search_style}
+                    />
+                </div>
                 <AutocompleteList />
             </CardActions>
         )

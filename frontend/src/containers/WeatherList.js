@@ -18,6 +18,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
 
 /* Mine */
 import WeatherChart from '../components/WeatherChart';
@@ -106,7 +107,10 @@ class WeatherList extends Component {
                               name="Humidity"
                               color="blue"
                 >
-                </WeatherChart>
+                </WeatherChart >
+                <TableRowColumn style={city_name_column_style}>
+                    <CloseIcon/>
+                </TableRowColumn>
             </TableRow>
         );
     };
@@ -139,6 +143,9 @@ class WeatherList extends Component {
                         </TableHeaderColumn>
                         <TableHeaderColumn>
                             Humidity
+                        </TableHeaderColumn>
+                        <TableHeaderColumn>
+                            Remove
                         </TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
