@@ -3,7 +3,7 @@
  */
 
 
-import {WEATHER_DATA} from '../utils/types';
+import {WEATHER_DATA, SET_WEATHER_DATA} from '../utils/types';
 
 let filter_existing_cities = (city, existing_state) => {
     let filtered_city = city
@@ -23,6 +23,8 @@ export default function (state = [], action) {
             received_data = received_data.filter((city) => {return city !== null});
 
             return [...state, ...received_data];
+        case SET_WEATHER_DATA:
+            return action.payload.data
         default:
             return state;
     }

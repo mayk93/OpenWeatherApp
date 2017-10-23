@@ -4,7 +4,7 @@
 
 import axios from 'axios';
 
-import {WEATHER_DATA, AUTOCOMPLETE, CURRENT_LOCATION} from '../utils/types'
+import {WEATHER_DATA, SET_WEATHER_DATA, AUTOCOMPLETE, CURRENT_LOCATION} from '../utils/types'
 import {BACKEND_SERVER} from '../utils/constants'
 
 
@@ -50,5 +50,12 @@ export let set_autocomplete_locations = (locations) => {
     return {
         type: AUTOCOMPLETE,
         payload: {data: locations}
+    }
+}
+
+export let set_weather_data = (weather_data) => {
+    return {
+        type: SET_WEATHER_DATA,
+        payload: {data: weather_data}
     }
 }

@@ -18,17 +18,25 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import CloseIcon from 'material-ui/svg-icons/navigation/close';
+import IconButton from 'material-ui/IconButton';
+import RemoveIcon from 'material-ui/svg-icons/content/remove-circle';
 
 /* Mine */
 import WeatherChart from '../components/WeatherChart';
 import UnitSelect from '../components/UnitSelect';
 
 /* Inline styles */
-import {city_name_column_style} from '../style/js/WeatherList'
+import {
+    weather_list_city_name_container_style,
+    weather_list_remove_icon_div_style,
+    weather_list_city_name_style
+} from '../style/js/WeatherList'
 
 /* Lodash */
 import _ from 'lodash';
+
+/* Actions */
+import {set_weather_data} from '../actions'
 
 let convert = (data, conversion) => {
     return _.map(data, conversion)
@@ -87,10 +95,25 @@ class WeatherList extends Component {
         return unit
     }
 
+    remove = (city_hash) => {
+        this.props.set_weather_data(this.props.weather_data.filter((city) => {return city.hash !== city_hash}))
+    }
+
     render_weather = (city) => {
         return (
             <TableRow key={city.hash}>
-                <TableRowColumn style={city_name_column_style}>{city.name}</TableRowColumn>
+                <TableRowColumn>
+                    <div style={weather_list_city_name_container_style}>
+                        <div style={weather_list_remove_icon_div_style}>
+                            <IconButton tooltip="Remove" tooltipPosition="top-right"
+                                        onClick={() => {this.remove(city.hash)}}
+                            >
+                                <RemoveIcon />
+                            </IconButton>
+                        </div>
+                        <div style={weather_list_city_name_style}><p>{city.name}</p></div>
+                    </div>
+                </TableRowColumn>
                 <WeatherChart data={this.temperature_conversion(city.temperature)}
                               symbol={this.get_current_unit('temperature').symbol}
                               name="Temperature"
@@ -108,9 +131,6 @@ class WeatherList extends Component {
                               color="blue"
                 >
                 </WeatherChart >
-                <TableRowColumn style={city_name_column_style}>
-                    <CloseIcon/>
-                </TableRowColumn>
             </TableRow>
         );
     };
@@ -144,9 +164,6 @@ class WeatherList extends Component {
                         <TableHeaderColumn>
                             Humidity
                         </TableHeaderColumn>
-                        <TableHeaderColumn>
-                            Remove
-                        </TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
 
@@ -165,7 +182,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({set_weather_data}, dispatch);
 }
 
 
