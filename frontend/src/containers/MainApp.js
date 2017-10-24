@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import {Card, CardHeader} from 'material-ui/Card';
 
 /* Mine */
-import WeatherList from './WeatherList'
+import WeatherList from '../components/WeatherList'
 import SearchBar from './SearchBar'
 
 /* Inline styles */
@@ -40,8 +40,7 @@ class MainApp extends Component {
                   title={`Looking for ${first_recommended_city(this.props.autocomplete)}?`}
                 />
                 <SearchBar />
-                <WeatherList>
-                </WeatherList>
+                <WeatherList screen_width={window.screen.width} />
             </Card>
         )
     }

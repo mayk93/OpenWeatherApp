@@ -42,7 +42,7 @@ let convert = (data, conversion) => {
     return _.map(data, conversion)
 }
 
-class WeatherList extends Component {
+class WeatherList_WideScreen extends Component {
     constructor (props) {
         super(props)
         this.state = {
@@ -186,4 +186,4 @@ function mapDispatchToProps (dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(WeatherList);
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherList_WideScreen);
