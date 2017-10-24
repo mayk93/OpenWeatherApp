@@ -38,13 +38,13 @@ import _ from 'lodash';
 /* Actions */
 import {set_weather_data} from '../actions'
 
-let convert = (data, conversion) => {
-    return _.map(data, conversion)
-}
+/* Functions */
+import {convert} from '../utils/functions'
 
-class WeatherList_WideScreen extends Component {
+class WeatherListWideScreen extends Component {
     constructor (props) {
-        super(props)
+        super(props);
+
         this.state = {
             selected: [],
             temperature_unit: 'default',
@@ -186,4 +186,4 @@ function mapDispatchToProps (dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(WeatherList_WideScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherListWideScreen);

@@ -2,6 +2,8 @@
  * Created by michael on 22/10/2017.
  */
 
+/* Lodash */
+import _ from 'lodash';
 
 export let format_location = (location) => {
     try {
@@ -25,4 +27,8 @@ export let first_recommended_city = (predictions) => {
     } else {
         return predictions[0].description
     }
+}
+
+export let convert = (data, conversion) => {
+    return _.map(data, conversion)
 }

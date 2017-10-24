@@ -28,7 +28,7 @@ import {weather_data_request, autocomplete_request, set_current_location} from '
 
 class SearchBar extends Component {
     constructor (props) {
-        super(props)
+        super(props);
 
         this.state = {
             search_city: ''

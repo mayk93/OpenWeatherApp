@@ -13,19 +13,18 @@ import { bindActionCreators } from 'redux';
 import {Card, CardHeader} from 'material-ui/Card';
 
 /* Mine */
-import WeatherList from '../components/WeatherList'
+import WeatherList from './WeatherList'
 import SearchBar from './SearchBar'
 
 /* Inline styles */
-import {main_app_card_style} from '../style/js/MainApp'
+import {main_app_card_style, main_app_text_style} from '../style/js/MainApp'
 
 /* Functions */
 import {first_recommended_city} from '../utils/functions'
 
 class MainApp extends Component {
     constructor (props) {
-        super(props)
-
+        super(props);
         this.state = {};
     }
 
@@ -35,12 +34,14 @@ class MainApp extends Component {
                 <CardHeader
                   title="Search"
                   subtitle="Add weather info about a city!"
+                  textStyle={main_app_text_style}
                 />
                 <CardHeader
                   title={`Looking for ${first_recommended_city(this.props.autocomplete)}?`}
+                  textStyle={main_app_text_style}
                 />
                 <SearchBar />
-                <WeatherList screen_width={window.screen.width} />
+                <WeatherList />
             </Card>
         )
     }
