@@ -15,7 +15,7 @@ import {unit_select_style, unit_select_menu_item_style} from '../style/js/UnitSe
 export default (props) => {
     return (
         <SelectField
-                  floatingLabelText="Temperature"
+                  floatingLabelText={props.name}
                   value={props.temperature_unit}
                   onChange={(event, index, value) => {props.handle_change(event, index, value, props.unit_type)}}
                   style={unit_select_style}

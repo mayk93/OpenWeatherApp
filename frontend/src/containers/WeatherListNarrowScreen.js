@@ -13,7 +13,6 @@ import { bindActionCreators } from 'redux';
 import {
     Table,
     TableBody,
-    TableHeader,
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
@@ -24,14 +23,15 @@ import RemoveIcon from 'material-ui/svg-icons/content/remove-circle';
 import {Card} from 'material-ui/Card';
 
 /* Mine */
-import WeatherChart from '../components/WeatherChart';
+import WeatherChart from './WeatherChart';
 import UnitSelect from '../components/UnitSelect';
 
 /* Inline styles */
 import {
     weather_list_city_name_container_style,
-    weather_list_remove_icon_div_style,
-    weather_list_city_name_style
+    weather_list_card_style,
+    weather_list_city_name_style,
+    weather_data_narrow_weather_chart_style
 } from '../style/js/WeatherList'
 
 /* Lodash */
@@ -104,16 +104,16 @@ class WeatherListNarrowScreen extends Component {
 
     render_weather = (city) => {
         return (
-            <Card style={{marginTop: '10px'}}>
-                <Table key={city.hash}>
+            <Card key={city.hash} style={weather_list_card_style}>
+                <Table>
                     <TableBody displayRowCheckbox={false}>
                         <TableRow>
                             <TableHeaderColumn>
-                                        <IconButton tooltip="Remove" tooltipPosition="top-right"
-                                                    onClick={() => {this.remove(city.hash)}}
-                                        >
-                                            <RemoveIcon />
-                                        </IconButton>
+                                <IconButton tooltip="Remove" tooltipPosition="top-right"
+                                            onClick={() => {this.remove(city.hash)}}
+                                >
+                                    <RemoveIcon />
+                                </IconButton>
                             </TableHeaderColumn>
                             <TableHeaderColumn>City Name</TableHeaderColumn>
                             <TableRowColumn>
@@ -129,12 +129,13 @@ class WeatherListNarrowScreen extends Component {
                                             temperature_unit={this.state.temperature_unit}
                                             units={this.units.temperature}
                                             unit_type="temperature"
+                                            name="Temperature"
                                 />
                                 <WeatherChart data={this.temperature_conversion(city.temperature)}
                                               symbol={this.get_current_unit('temperature').symbol}
                                               name="Temperature"
                                               color="red"
-                                              style={{paddingLeft: '0px'}}
+                                              style={weather_data_narrow_weather_chart_style}
                                 >
                                 </WeatherChart>
                             </TableHeaderColumn>
@@ -146,11 +147,13 @@ class WeatherListNarrowScreen extends Component {
                                             temperature_unit={this.state.pressure_unit}
                                             units={this.units.pressure}
                                             unit_type="pressure"
+                                            name="Pressure"
+
                                 />
                                 <WeatherChart data={this.pressure_conversion(city.pressure)}
                                               name="Pressure"
                                               color="gray"
-                                              style={{paddingLeft: '0px'}}
+                                              style={weather_data_narrow_weather_chart_style}
                                 >
                                 </WeatherChart>
                             </TableHeaderColumn>
@@ -163,7 +166,7 @@ class WeatherListNarrowScreen extends Component {
                                               symbol="%"
                                               name="Humidity"
                                               color="blue"
-                                              style={{paddingLeft: '0px'}}
+                                              style={weather_data_narrow_weather_chart_style}
                                 >
                                 </WeatherChart >
                             </TableHeaderColumn>
@@ -172,38 +175,6 @@ class WeatherListNarrowScreen extends Component {
                 </Table>
                 <Divider/>
             </Card>
-
-            // <TableRow key={city.hash}>
-            //     <TableRowColumn>
-            //         <div style={weather_list_city_name_container_style}>
-            //             <div style={weather_list_remove_icon_div_style}>
-            //                 <IconButton tooltip="Remove" tooltipPosition="top-right"
-            //                             onClick={() => {this.remove(city.hash)}}
-            //                 >
-            //                     <RemoveIcon />
-            //                 </IconButton>
-            //             </div>
-            //             <div style={weather_list_city_name_style}><p>{city.name}</p></div>
-            //         </div>
-            //     </TableRowColumn>
-            //     <WeatherChart data={this.temperature_conversion(city.temperature)}
-            //                   symbol={this.get_current_unit('temperature').symbol}
-            //                   name="Temperature"
-            //                   color="red"
-            //     >
-            //     </WeatherChart>
-            //     <WeatherChart data={this.pressure_conversion(city.pressure)}
-            //                   name="Pressure"
-            //                   color="gray"
-            //     >
-            //     </WeatherChart>
-            //     <WeatherChart data={this.humidity_conversion(city.humidity)}
-            //                   symbol="%"
-            //                   name="Humidity"
-            //                   color="blue"
-            //     >
-            //     </WeatherChart >
-            // </TableRow>
         );
     };
 
@@ -211,7 +182,7 @@ class WeatherListNarrowScreen extends Component {
         let new_state = {}
         new_state[`${unit_type}_unit`] = value
         this.setState(new_state)
-    }
+    };
 
     render () {
         return (

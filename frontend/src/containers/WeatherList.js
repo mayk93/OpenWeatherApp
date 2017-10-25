@@ -13,15 +13,19 @@ import { bindActionCreators } from 'redux';
 import WeatherListWideScreen from '../containers/WeatherListWideScreen'
 import WeatherListNarrowScreen from '../containers/WeatherListNarrowScreen'
 
+/* Constants */
 import {NARROW_SCREEN_WIDTH} from '../utils/constants'
+
+/* Actions */
+import { set_size } from '../actions'
+
+/* Functions */
+import {get_current_size} from '../utils/functions'
 
 class WeatherList extends Component {
     constructor (props) {
         super(props);
-        this.state = {
-            width: window.innerWidth,
-            height: window.innerHeight
-        };
+        this.state = {};
 
         this.updateDimensions = this.updateDimensions.bind(this);
     }
@@ -39,18 +43,12 @@ class WeatherList extends Component {
     }
 
     updateDimensions () {
-        let w = window,
-            d = document,
-            documentElement = d.documentElement,
-            body = d.getElementsByTagName('body')[0],
-            width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
-            height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+        this.props.set_size(get_current_size());
 
-        this.setState({width: width, height: height});
     }
 
     render () {
-        if (this.state.width < NARROW_SCREEN_WIDTH) {
+        if (this.props.current_size.width < NARROW_SCREEN_WIDTH) {
             return (
                 <WeatherListNarrowScreen/>
             )
@@ -63,11 +61,13 @@ class WeatherList extends Component {
 }
 
 function mapStateToProps (state) {
-    return {};
+    return {
+        current_size: state.current_size
+    };
 }
 
 function mapDispatchToProps (dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({set_size}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeatherList);

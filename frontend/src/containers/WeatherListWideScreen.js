@@ -22,7 +22,7 @@ import IconButton from 'material-ui/IconButton';
 import RemoveIcon from 'material-ui/svg-icons/content/remove-circle';
 
 /* Mine */
-import WeatherChart from '../components/WeatherChart';
+import WeatherChart from './WeatherChart';
 import UnitSelect from '../components/UnitSelect';
 
 /* Inline styles */
@@ -152,6 +152,7 @@ class WeatherListWideScreen extends Component {
                                         temperature_unit={this.state.temperature_unit}
                                         units={this.units.temperature}
                                         unit_type="temperature"
+                                        name="Temperature"
                             />
                         </TableHeaderColumn>
                         <TableHeaderColumn>
@@ -159,6 +160,7 @@ class WeatherListWideScreen extends Component {
                                         temperature_unit={this.state.pressure_unit}
                                         units={this.units.pressure}
                                         unit_type="pressure"
+                                        name="Pressure"
                             />
                         </TableHeaderColumn>
                         <TableHeaderColumn>

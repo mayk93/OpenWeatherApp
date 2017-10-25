@@ -5,6 +5,10 @@
 /* React */
 import React, {Component} from 'react';
 
+/* Redux */
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 /* Material UI */
 import {TableRowColumn} from 'material-ui/Table';
 import {Card, CardHeader} from 'material-ui/Card';
@@ -12,23 +16,18 @@ import {Card, CardHeader} from 'material-ui/Card';
 /* Other */
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 
-/* Lodash */
-import _ from 'lodash';
-
-let average = (data) => {
-    return _.round(_.sum(data)/data.length);
-};
+/* Functions */
+import {average, weather_list_compute_name_style} from '../utils/functions'
 
 class WeatherChart extends Component {
     constructor () {
-        super()
+        super();
         this.state = {}
     }
 
     render () {
-        console.log('this.props.style ? this.props.style : {}: ', this.props.style ? this.props.style : {})
         return (
-            <TableRowColumn id="lookAtThis" style={this.props.style ? this.props.style : {}}>
+            <TableRowColumn style={this.props.style ? this.props.style : {}}>
                 <Sparklines data={this.props.data}>
                     <SparklinesLine color={this.props.color} />
                 </Sparklines>
@@ -36,6 +35,7 @@ class WeatherChart extends Component {
                     <CardHeader
                       title={this.props.name || `${average(this.props.data)} ${this.props.symbol || ''}`}
                       subtitle={this.props.name ? `${average(this.props.data)} ${this.props.symbol || ''}` : ''}
+                      titleStyle={weather_list_compute_name_style(this.props.current_size)}
                     />
                 </Card>
             </TableRowColumn>
@@ -43,4 +43,14 @@ class WeatherChart extends Component {
     }
 }
 
-export default WeatherChart
+function mapStateToProps (state) {
+    return {
+        current_size: state.current_size
+    };
+}
+
+function mapDispatchToProps (dispatch) {
+    return bindActionCreators({}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherChart);
