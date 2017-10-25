@@ -26,8 +26,9 @@ class WeatherChart extends Component {
     }
 
     render () {
+        console.log('this.props.style ? this.props.style : {}: ', this.props.style ? this.props.style : {})
         return (
-            <TableRowColumn>
+            <TableRowColumn id="lookAtThis" style={this.props.style ? this.props.style : {}}>
                 <Sparklines data={this.props.data}>
                     <SparklinesLine color={this.props.color} />
                 </Sparklines>
