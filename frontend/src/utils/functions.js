@@ -42,12 +42,13 @@ export let average = (data) => {
 
 export let weather_list_compute_name_style = (size) => {
     if (size.width < NARROW_SCREEN_WIDTH) {
-        let style = {width: "100px"}
+        let style = {width: "100px"};
         BREAKPOINTS.map((bp) => {
             if (size.width >= bp.lower && size.width < bp.upper) {
                 style = bp.style
             }
-        })
+            return null;
+        });
         return style
     }
     return {}
