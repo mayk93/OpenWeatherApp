@@ -32,7 +32,9 @@ import {
     weather_list_city_name_container_style,
     weather_list_card_style,
     weather_list_city_name_style,
-    weather_data_narrow_weather_chart_style
+    weather_list_data_narrow_weather_chart_style,
+    weather_list_container_style_black,
+    weather_list_container_style_white
 } from '../style/js/WeatherList'
 
 
@@ -100,7 +102,7 @@ class WeatherListNarrowScreen extends Component {
                                               }
                                               name="Temperature"
                                               color="red"
-                                              style={weather_data_narrow_weather_chart_style}
+                                              style={weather_list_data_narrow_weather_chart_style}
                                 >
                                 </WeatherChart>
                             </TableHeaderColumn>
@@ -127,7 +129,7 @@ class WeatherListNarrowScreen extends Component {
                                               }
                                               name="Pressure"
                                               color="gray"
-                                              style={weather_data_narrow_weather_chart_style}
+                                              style={weather_list_data_narrow_weather_chart_style}
                                 >
                                 </WeatherChart>
                             </TableHeaderColumn>
@@ -142,7 +144,7 @@ class WeatherListNarrowScreen extends Component {
                                               symbol="%"
                                               name="Humidity"
                                               color="blue"
-                                              style={weather_data_narrow_weather_chart_style}
+                                              style={weather_list_data_narrow_weather_chart_style}
                                 >
                                 </WeatherChart >
                             </TableHeaderColumn>
@@ -156,7 +158,13 @@ class WeatherListNarrowScreen extends Component {
 
     render () {
         return (
-            <div>
+            <div style={
+                this.props.weather_data.length > 0 ?
+                    weather_list_container_style_black
+                    :
+                    weather_list_container_style_white
+                }
+            >
                 { this.props.weather_data.map(this.render_weather) }
             </div>
         );

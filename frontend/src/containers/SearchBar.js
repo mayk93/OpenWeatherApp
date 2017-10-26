@@ -12,12 +12,21 @@ import { bindActionCreators } from 'redux';
 /* Material UI */
 import {CardActions} from 'material-ui/Card';
 import AutoComplete from 'material-ui/AutoComplete';
+import SearchIcon from 'material-ui/svg-icons/action/search';
+
+/* Inline styles */
+import {
+    search_bar_flex_div_style, search_bar_search_icon_style
+} from '../style/js/SearchBar';
+
+/* Constants */
+import {NARROW_SCREEN_WIDTH} from '../utils/constants';
 
 /* Actions */
 import { weather_data_request, autocomplete_request } from '../actions';
 
 /* Functions */
-import { get_location, format_location } from '../utils/functions';
+import { get_location, format_location, random_city } from '../utils/functions';
 
 class SearchBar extends Component {
     constructor (props) {
@@ -42,14 +51,31 @@ class SearchBar extends Component {
     render () {
         return (
             <CardActions>
-                <AutoComplete
-                  hintText="Choose a city"
-                  dataSource={this.props.autocomplete.map((ac) => {return ac.description})}
-                  onUpdateInput={this.handle_search_city_input}
-                  onNewRequest={this.weather_data_request}
-                  floatingLabelText="Search for a city"
-                  fullWidth={true}
-                />
+                {
+                    this.props.current_size.width < NARROW_SCREEN_WIDTH?
+                    <AutoComplete
+                      dataSource={this.props.autocomplete.map((ac) => {return ac.description})}
+                      onUpdateInput={this.handle_search_city_input}
+                      onNewRequest={this.weather_data_request}
+                      hintText={random_city()}
+                      floatingLabelText="Search for a city"
+                      fullWidth={true}
+                    />
+                    :
+                    <div style={search_bar_flex_div_style}>
+                        <div style={search_bar_search_icon_style}>
+                            <SearchIcon/>
+                        </div>
+                        <AutoComplete
+                          dataSource={this.props.autocomplete.map((ac) => {return ac.description})}
+                          onUpdateInput={this.handle_search_city_input}
+                          onNewRequest={this.weather_data_request}
+                          hintText={random_city()}
+                          floatingLabelText="Search for a city"
+                          fullWidth={true}
+                        />
+                    </div>
+                }
             </CardActions>
         )
     }
@@ -57,7 +83,8 @@ class SearchBar extends Component {
 
 function mapStateToProps (state) {
     return {
-        autocomplete: state.autocomplete
+        autocomplete: state.autocomplete,
+        current_size: state.current_size
     };
 }
 

@@ -17,3 +17,13 @@ export const BREAKPOINTS = [
     {lower: 650, upper: 750, style: {width: "400px"}},
     {lower: 750, upper: 800, style: {width: "450px"}}
 ];
+
+export const CITIES_EXAMPLE = [
+    'London',
+    'New York',
+    'Paris',
+    'Berlin',
+    'San Francisco',
+    'Bucharest',
+    'Tokyo'
+];

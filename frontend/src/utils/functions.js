@@ -6,7 +6,7 @@
 import _ from 'lodash';
 
 /* Constants */
-import {NARROW_SCREEN_WIDTH, BREAKPOINTS} from '../utils/constants'
+import {NARROW_SCREEN_WIDTH, BREAKPOINTS, CITIES_EXAMPLE} from '../utils/constants'
 
 export let format_location = (location) => {
     try {
@@ -87,4 +87,10 @@ export let get_location = (locations, name) => {
     });
 
     return location;
+};
+
+export let random_city = () => {
+    let random_index = Math.floor(Math.random()* CITIES_EXAMPLE.length);
+
+    return `${CITIES_EXAMPLE[random_index]}?`;
 };
