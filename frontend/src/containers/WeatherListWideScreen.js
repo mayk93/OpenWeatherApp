@@ -24,6 +24,7 @@ import RemoveIcon from 'material-ui/svg-icons/content/remove-circle';
 /* Mine */
 import WeatherChart from './WeatherChart';
 import UnitSelect from '../components/UnitSelect';
+import { GoogleMapComponent, GoogleMapComponentPropsWide } from '../components/GoogleMapComponent';
 
 /* Inline styles */
 import {
@@ -31,7 +32,6 @@ import {
     weather_list_remove_icon_div_style,
     weather_list_city_name_style
 } from '../style/js/WeatherList'
-
 
 class WeatherListWideScreen extends Component {
     constructor (props) {
@@ -61,6 +61,14 @@ class WeatherListWideScreen extends Component {
                         </div>
                         <div style={weather_list_city_name_style}><p>{city.name}</p></div>
                     </div>
+                </TableRowColumn>
+                <TableRowColumn>
+                    <GoogleMapComponent location={city.location}
+                                        googleMapURL={GoogleMapComponentPropsWide.googleMapURL}
+                                        loadingElement={GoogleMapComponentPropsWide.loadingElement}
+                                        containerElement={GoogleMapComponentPropsWide.containerElement}
+                                        mapElement={GoogleMapComponentPropsWide.mapElement}
+                    />
                 </TableRowColumn>
                 <WeatherChart data={this.conversion(
                     city.temperature, this.conversions, this.state.temperature_unit
@@ -100,6 +108,7 @@ class WeatherListWideScreen extends Component {
                 <TableHeader displaySelectAll={false}>
                     <TableRow>
                         <TableHeaderColumn>City Name</TableHeaderColumn>
+                        <TableHeaderColumn>City Location</TableHeaderColumn>
                         <TableHeaderColumn>
                             <UnitSelect handle_change={
                                 (event, index, value, unit_type) => {this.setState(this.handle_unit_selection(

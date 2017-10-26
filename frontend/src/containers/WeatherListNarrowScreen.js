@@ -25,6 +25,7 @@ import {Card} from 'material-ui/Card';
 /* Mine */
 import WeatherChart from './WeatherChart';
 import UnitSelect from '../components/UnitSelect';
+import { GoogleMapComponent, GoogleMapComponentPropsNarrow } from '../components/GoogleMapComponent';
 
 /* Inline styles */
 import {
@@ -68,6 +69,15 @@ class WeatherListNarrowScreen extends Component {
                                     <div style={weather_list_city_name_style}><p>{city.name}</p></div>
                                 </div>
                             </TableRowColumn>
+                        </TableRow>
+
+                        <TableRow>
+                            <GoogleMapComponent location={city.location}
+                                                googleMapURL={GoogleMapComponentPropsNarrow.googleMapURL}
+                                                loadingElement={GoogleMapComponentPropsNarrow.loadingElement}
+                                                containerElement={GoogleMapComponentPropsNarrow.containerElement}
+                                                mapElement={GoogleMapComponentPropsNarrow.mapElement}
+                            />
                         </TableRow>
 
                         <TableRow>

@@ -32,6 +32,17 @@ export let first_recommended_city = (predictions) => {
     }
 };
 
+export let filter_existing_cities = (city, existing_state) => {
+    let filtered_city = city;
+    existing_state.map((existing_city) => {
+        if (existing_city.hash === city.hash) {
+            filtered_city = null
+        }
+        return null
+    });
+    return filtered_city
+};
+
 export let convert = (data, conversion) => {
     return _.map(data, conversion)
 };
