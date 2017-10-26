@@ -11,7 +11,7 @@ import {BACKEND_SERVER} from '../utils/constants'
 /* Requests */
 export let weather_data_request = (search_city, search_country) => {
     if (search_city && search_country) {
-        let url = `${BACKEND_SERVER}/weather_data`
+        let url = `${BACKEND_SERVER}/weather_data`;
 
         const request = axios.post(url, {search_city, search_country});
 
@@ -27,7 +27,7 @@ export let weather_data_request = (search_city, search_country) => {
 };
 
 export let autocomplete_request = (current_input) => {
-    let url = `${BACKEND_SERVER}/autocomplete`
+    let url = `${BACKEND_SERVER}/autocomplete`;
 
     const request = axios.post(url, {current_input});
 
@@ -65,4 +65,4 @@ export let set_size = (size) => {
         type: SIZE,
         payload: size
     }
-}
+};

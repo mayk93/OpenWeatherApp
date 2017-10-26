@@ -75,3 +75,16 @@ export let get_current_size = () => {
 
     return {width, height}
 };
+
+export let get_location = (locations, name) => {
+    let location = null;
+
+    locations.map((loc) => {
+        if (loc.description === name) {
+            location = loc;
+        }
+        return null;
+    });
+
+    return location;
+};
