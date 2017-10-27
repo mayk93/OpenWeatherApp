@@ -33,6 +33,17 @@ From the repository root:
 4. `hug -f api_server.py`
 ---
 
-<img src="https://cdn.pixabay.com/photo/2012/04/18/13/21/clouds-37009_960_720.png" alt="Weather" style="width: 150px; height: 150px"/>
-<img src="https://cdn-images-1.medium.com/max/512/1*qUlxDdY3T-rDtJ4LhLGkEg.png" alt="React" style="width: 150px; height: 150px"/>
-<img src="https://i1.wp.com/laesporadelhongo.com/wp-content/uploads/2017/09/laesporadelhongo.com_hug.png?fit=435%2C371" alt="Hug" style="width: 150px; height: 150px"/>
+<div style="display: flex;">
+    <div style="flex: 1">
+        <img src="https://cdn.pixabay.com/photo/2012/04/18/13/21/clouds-37009_960_720.png" alt="Weather" style="width: 150px!important; height: 150px!important"/>
+    </div>
+    <div style="flex: 1">
+        <img src="https://cdn-images-1.medium.com/max/512/1*qUlxDdY3T-rDtJ4LhLGkEg.png" alt="React" style="width: 150px!important; height: 150px!important"/>
+    </div>
+    <div style="flex: 1">
+        <img src="https://i1.wp.com/laesporadelhongo.com/wp-content/uploads/2017/09/laesporadelhongo.com_hug.png?fit=435%2C371" alt="Hug" style="width: 150px!important; height: 150px!important"/>
+    </div>
+</div>
+
+
+
