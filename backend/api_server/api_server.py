@@ -32,7 +32,7 @@ for key_path in ["keys.json", "/home/michael/server/keys.json"]:
         last_exception = e
 
 if not found:
-    logging.exception(e)
+    logging.exception(last_exception)
     logging.info("[Pre Server] Could not load API keys file or some keys are missing. Ensure keys.json exists in %s" %
                  os.path.dirname(os.path.realpath(__file__)))
     sys.exit()
