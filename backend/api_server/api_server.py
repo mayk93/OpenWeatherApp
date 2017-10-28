@@ -27,6 +27,7 @@ for key_path in ["keys.json", "/home/michael/server/keys.json"]:
         google_places_api_key = api_keys["google_places_api"]
         open_weather_api_key = api_keys["open_weather_api"]
 
+        found = True
         break
     except Exception as e:
         last_exception = e
