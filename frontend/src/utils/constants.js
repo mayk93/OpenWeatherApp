@@ -3,7 +3,7 @@
  */
 
 export const BACKEND_SERVER = (
-    process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000'
+    process.env.NODE_ENV === 'production' ? 'https://myapps.gallery' : 'http://localhost:8000'
 );
 
 export const NARROW_SCREEN_WIDTH = 800;
