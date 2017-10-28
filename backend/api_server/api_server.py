@@ -17,24 +17,27 @@ import requests
 # My modules
 from data_formatters import format_autocomplete, format_weather_data
 
+found = False
+last_exception = None
+for key_path in ["keys.json", "/home/michael/server/keys.json"]:
+    try:
+        with open(key_path) as source:
+            api_keys = json.loads(source.read())
 
-try:
-    with open("keys.json") as source:
-        api_keys = json.loads(source.read())
+        google_places_api_key = api_keys["google_places_api"]
+        open_weather_api_key = api_keys["open_weather_api"]
 
-    google_places_api_key = api_keys["google_places_api"]
-    open_weather_api_key = api_keys["open_weather_api"]
-except Exception as e:
+        break
+    except Exception as e:
+        last_exception = e
+
+if not found:
     logging.exception(e)
     logging.info("[Pre Server] Could not load API keys file or some keys are missing. Ensure keys.json exists in %s" %
                  os.path.dirname(os.path.realpath(__file__)))
     sys.exit()
 
-# ToDo: Temporarily removed "*.github.com" because:
-'''
-The 'Access-Control-Allow-Origin' header contains multiple values ... but only one is allowed
-'''
-ALLOWED_ORIGINS = ["http://localhost:3000"]
+ALLOWED_ORIGINS = ["https://myapps.gallery"]
 
 api = hug.API(__name__)
 api.http.add_middleware(CORSMiddleware(api, allow_origins=ALLOWED_ORIGINS))

@@ -3,6 +3,9 @@
 A simple weather app that uses the [open weather map](http://openweathermap.org/) API. Build with 
 [React.js](https://reactjs.org/) and [Hug.py](http://www.hug.rest/).
 
+# Demo
+
+[Open weather app](https://myapps.gallery/)
 
 # Build instructions:
 
