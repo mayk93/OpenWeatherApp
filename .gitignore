@@ -2,6 +2,7 @@
 /node_modules
 *_modules
 *_env
+bugs/
 keys.json
 
 # Byte-compiled / optimized / DLL files
