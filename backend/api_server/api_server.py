@@ -16,10 +16,11 @@ import requests
 
 # My modules
 from data_formatters import format_autocomplete, format_weather_data
+from constants import KEY_LOCATIONS, ALLOWED_ORIGINS
 
 found = False
 last_exception = None
-for key_path in ["keys.json", "/home/michael/server/keys.json"]:
+for key_path in KEY_LOCATIONS:
     try:
         with open(key_path) as source:
             api_keys = json.loads(source.read())
@@ -37,8 +38,6 @@ if not found:
     logging.info("[Pre Server] Could not load API keys file or some keys are missing. Ensure keys.json exists in %s" %
                  os.path.dirname(os.path.realpath(__file__)))
     sys.exit()
-
-ALLOWED_ORIGINS = ["https://myapps.gallery"]
 
 api = hug.API(__name__)
 api.http.add_middleware(CORSMiddleware(api, allow_origins=ALLOWED_ORIGINS))

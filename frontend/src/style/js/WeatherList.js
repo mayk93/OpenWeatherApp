@@ -25,11 +25,11 @@ export let weather_list_data_narrow_weather_chart_style = {
 };
 
 export let weather_list_container_style_black = {
-    paddingTop: '10px',
-    backgroundColor: 'black'
+    paddingTop: "10px",
+    backgroundColor: "black"
 };
 
 export let weather_list_container_style_white = {
-    paddingTop: '10px',
-    backgroundColor: 'white'
+    paddingTop: "10px",
+    backgroundColor: "white"
 };

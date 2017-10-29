@@ -93,6 +93,7 @@ class WeatherListNarrowScreen extends Component {
                                             units={this.units.temperature}
                                             unit_type="temperature"
                                             name="Temperature"
+                                            auto_width={true}
                                 />
                                 <WeatherChart data={this.conversion(
                                     city.temperature, this.conversions, this.state.temperature_unit
@@ -119,6 +120,7 @@ class WeatherListNarrowScreen extends Component {
                                             units={this.units.pressure}
                                             unit_type="pressure"
                                             name="Pressure"
+                                            auto_width={true}
 
                                 />
                                 <WeatherChart data={this.conversion(

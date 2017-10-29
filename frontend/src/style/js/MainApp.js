@@ -9,4 +9,4 @@ export let main_app_card_style = {
     marginLeft: "10%"
 };
 
-export let main_app_text_style = {paddingRight: '0px'};
+export let main_app_text_style = {paddingRight: "0px"};

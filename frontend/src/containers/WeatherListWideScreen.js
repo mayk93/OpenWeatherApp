@@ -119,6 +119,7 @@ class WeatherListWideScreen extends Component {
                                         units={this.units.temperature}
                                         unit_type="temperature"
                                         name="Temperature"
+                                        auto_width={true}
                             />
                         </TableHeaderColumn>
                         <TableHeaderColumn>
@@ -131,6 +132,7 @@ class WeatherListWideScreen extends Component {
                                         units={this.units.pressure}
                                         unit_type="pressure"
                                         name="Pressure"
+                                        auto_width={true}
                             />
                         </TableHeaderColumn>
                         <TableHeaderColumn>

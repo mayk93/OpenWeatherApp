@@ -5255,6 +5255,12 @@ react-event-listener@^0.5.1:
     prop-types "^15.6.0"
     warning "^3.0.0"
 
+react-fontawesome@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/react-fontawesome/-/react-fontawesome-1.6.1.tgz#eddce17e7dc731aa09fd4a186688a61793a16c5c"
+  dependencies:
+    prop-types "^15.5.6"
+
 react-google-maps@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/react-google-maps/-/react-google-maps-9.1.0.tgz#0036ebec80aea30600c7f9c518b3d7142b134e62"
