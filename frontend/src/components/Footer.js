@@ -1,14 +1,13 @@
 /* React */
 import React from 'react';
 
-/* Material UI */
-import Card from 'material-ui/Card';
-
 /* Font Awesome */
 import FontAwesome from 'react-fontawesome';
 
 /* Inline styles */
 import {footer_style} from '../style/js/Footer';
+/* CSS */
+import '../style/css/Footer.css';
 
 export default (props) => {
     return (
@@ -16,7 +15,9 @@ export default (props) => {
             <div style={footer_style}>
                 <div style={{flex: 1}}>
                     Hosted on
-                    <a href="https://github.com/mayk93/OpenWeatherApp">
+                    <a href="https://github.com/mayk93/OpenWeatherApp"
+                       className="git_hub_link"
+                    >
                         <FontAwesome
                             name="github"
                             size="2x"
