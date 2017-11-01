@@ -10,7 +10,7 @@ export let footer_style = {
     position: "fixed",
     left: "0",
     bottom: "0",
-    height: "50px",
+    height: "25px",
     width: "100%",
     zIndex: 10
 };

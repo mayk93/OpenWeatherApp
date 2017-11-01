@@ -7,7 +7,8 @@ import React from 'react';
 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-let url = "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places";
+let base = "https://maps.googleapis.com/maps/api/js";
+let url = `${base}?key=${process.env.REACT_APP_GOOGLE_PLACES_KEY}&v=3.exp&libraries=geometry,drawing,places`;
 
 export let GoogleMapComponentPropsWide = {
     googleMapURL: url,
