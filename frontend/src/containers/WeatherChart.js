@@ -20,7 +20,7 @@ import { Sparklines, SparklinesLine } from 'react-sparklines';
 import {weather_chart_subtitle_style} from '../style/js/WeatherChart'
 
 /* Functions */
-import {average, weather_list_compute_name_style} from '../utils/functions'
+import {average, compute_width_style} from '../utils/functions'
 
 class WeatherChart extends Component {
     constructor () {
@@ -38,7 +38,7 @@ class WeatherChart extends Component {
                     <CardHeader
                       title={this.props.name || `${average(this.props.data)} ${this.props.symbol || ''}`}
                       subtitle={this.props.name ? `${average(this.props.data)} ${this.props.symbol || ''}` : ''}
-                      titleStyle={weather_list_compute_name_style(this.props.current_size)}
+                      titleStyle={compute_width_style(this.props.current_size)}
                       subtitleStyle={weather_chart_subtitle_style}
                     />
                 </Card>

@@ -23,7 +23,7 @@ import RemoveIcon from 'material-ui/svg-icons/content/remove-circle';
 
 /* Mine */
 import WeatherChart from './WeatherChart';
-import UnitSelect from '../components/UnitSelect';
+import UnitSelect from './UnitSelect';
 import { GoogleMapComponent, GoogleMapComponentPropsWide } from '../components/GoogleMapComponent';
 
 /* Inline styles */

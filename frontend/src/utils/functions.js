@@ -51,16 +51,17 @@ export let average = (data) => {
     return _.round(_.sum(data)/data.length);
 };
 
-export let weather_list_compute_name_style = (size) => {
+export let compute_width_style = (size, extra=0) => {
+    let desired_width;
     if (size.width < NARROW_SCREEN_WIDTH) {
-        let style = {width: "100px"};
+        desired_width = "100px";
         BREAKPOINTS.map((bp) => {
             if (size.width >= bp.lower && size.width < bp.upper) {
-                style = bp.style
+                desired_width = bp.style.width + extra;
             }
             return null;
         });
-        return style
+        return {width: desired_width}
     }
     return {}
 };
