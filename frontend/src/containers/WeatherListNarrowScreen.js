@@ -24,7 +24,7 @@ import {Card} from 'material-ui/Card';
 
 /* Mine */
 import WeatherChart from './WeatherChart';
-import UnitSelect from '../components/UnitSelect';
+import UnitSelect from './UnitSelect';
 import { GoogleMapComponent, GoogleMapComponentPropsNarrow } from '../components/GoogleMapComponent';
 
 /* Inline styles */
