@@ -20,6 +20,7 @@ import {
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import RemoveIcon from 'material-ui/svg-icons/content/remove-circle';
+import Dropdown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import {Card} from 'material-ui/Card';
 
 /* Mine */
@@ -53,6 +54,7 @@ class WeatherListNarrowScreen extends Component {
     }
 
     render_weather = (city) => {
+        // ToDo: Refactor this at some point. The TableRows containing the actual data can and should be factored out.
         return (
             <Card key={city.hash} style={weather_list_card_style}>
                 <Table>
@@ -84,6 +86,7 @@ class WeatherListNarrowScreen extends Component {
 
                         <TableRow>
                             <TableHeaderColumn>
+                                <Dropdown />
                                 <UnitSelect handle_change={
                                     (event, index, value, unit_type) => {this.setState(this.handle_unit_selection(
                                         event, index, value, unit_type
@@ -112,6 +115,7 @@ class WeatherListNarrowScreen extends Component {
 
                         <TableRow>
                             <TableHeaderColumn>
+                                <Dropdown />
                                 <UnitSelect handle_change={
                                     (event, index, value, unit_type) => {this.setState(this.handle_unit_selection(
                                         event, index, value, unit_type
