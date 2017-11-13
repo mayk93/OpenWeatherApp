@@ -4,6 +4,8 @@
 *_env
 bugs/
 keys.json
+yarn_build.sh
+yarn_start.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
