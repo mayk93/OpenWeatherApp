@@ -9,6 +9,7 @@ import {BACKEND_SERVER} from '../utils/constants'
 
 
 /* Requests */
+
 export let weather_data_request = (search_city, search_country) => {
     if (search_city && search_country) {
         let url = `${BACKEND_SERVER}/weather_data`;
@@ -39,6 +40,7 @@ export let autocomplete_request = (current_input) => {
 
 
 /* Setters */
+
 export let set_current_location = (location) => {
     return {
         type: CURRENT_LOCATION,
