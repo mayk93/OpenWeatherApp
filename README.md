@@ -16,7 +16,6 @@ Now, do this:
 **Frontend:**
 
 From the repository root:
-
 1.  `cd frontend`
 2. `yarn install`
 3. `yarn start`
