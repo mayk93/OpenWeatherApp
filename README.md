@@ -19,6 +19,7 @@ From the repository root:
 1.  `cd frontend`
 2. `yarn install`
 3. `yarn start`
+
 ---
 
 ---
@@ -33,4 +34,5 @@ From the repository root:
     Use a `python3` path as `hug.py` is not compatible with `python2`. 
 3. `source backend_env/bin/activate`
 4. `hug -f api_server.py`
+
 ---
