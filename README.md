@@ -1,11 +1,15 @@
 # OpenWeatherApp
 
+![](./frontend/src/assets/sun_and_cloud.png)
+
 A simple weather app that uses the [open weather map](http://openweathermap.org/) API. Build with 
 [React.js](https://reactjs.org/) and [Hug.py](http://www.hug.rest/).
 
 # Demo
 
-[Open weather app](https://myapps.gallery/)
+[Open weather app](https://projects.myapps.gallery/weather)
+
+[You can check out my other projects here](https://myapps.gallery/)
 
 # Build instructions:
 
