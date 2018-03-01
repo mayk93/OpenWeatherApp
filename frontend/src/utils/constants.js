@@ -3,7 +3,10 @@
  */
 
 export const BACKEND_SERVER = (
-    process.env.NODE_ENV === 'production' ? 'https://myapps.gallery:8000' : 'http://localhost:8000'
+    process.env.NODE_ENV === 'production' ?
+      'https://myapps.gallery:8000/api/open_weather'
+      :
+      'http://localhost:8000/api/open_weather'
 );
 
 export const NARROW_SCREEN_WIDTH = 800;
