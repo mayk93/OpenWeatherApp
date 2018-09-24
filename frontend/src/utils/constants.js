@@ -4,7 +4,7 @@
 
 export const BACKEND_SERVER = (
     process.env.NODE_ENV === 'production' ?
-      'https://myapps.gallery:8000/api/open_weather'
+      'http://myapps.gallery:8000/api/open_weather'
       :
       'http://localhost:8000/api/open_weather'
 );
